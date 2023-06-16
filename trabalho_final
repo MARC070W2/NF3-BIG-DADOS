@@ -216,7 +216,7 @@ df
 
 med = df[df["nome"] == "Medicina"]
 
-div = Med["mensalidade"].mean()
+div = Medicina["mensalidade"].mean()
 div
 
 ''' 2 - H '''
