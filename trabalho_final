@@ -71,7 +71,7 @@ print("Soma da coluna de valores por bebida:")
 print(value_sum_by_beverage)
 
 
-''' letra d '''
+''' 1 - D  '''
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -95,7 +95,7 @@ plt.show()
 print(statistics)
 
 
-''' letra e '''
+''' 1 - E '''
 
 ''' i '''
 import pandas as pd
@@ -218,6 +218,20 @@ med = df[df["nome"] == "Medicina"]
 
 div = Med["mensalidade"].mean()
 div
+
+''' 2 - H '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+integral = df[df["turno"] == "Integral"]
+
+nota_de_corte = integral["nota_integral_ampla"].mean()
+
+nota_de_corte
 
 ''' 2 - I '''
 
