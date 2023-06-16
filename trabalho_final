@@ -1,0 +1,269 @@
+'''QUESTAO 1 '''
+
+link = "https://raw.githubusercontent.com/MARC070W2/NF3-BIG-DATA-MARCOS-PAULO-BORGES-MACEDO/main/world_alcohol%20(1).csv"
+
+
+''' 1 - A '''
+
+import pandas as pd
+import requests
+import matplotlib.pyplot as plot
+
+df = pd.read_csv(link)
+df
+ 
+grouped_df = df.groupby('Beverage Types')
+
+for group, group_df in grouped_df:
+
+    print(f"Group: {group}")
+    print(group_df)
+    print()
+
+
+''' 1 - B '''
+
+import pandas as pd
+import requests
+import matplotlib.pyplot as plot
+
+df = pd.read_csv(link)
+df
+
+grouped_df = df.groupby(['WHO region', 'Year'])
+
+for group, group_df in grouped_df:
+
+    print(f"Group: {group}")
+    print(group_df)
+    print()
+
+''' 1 - C '''
+
+import pandas as pd
+import requests
+import matplotlib.pyplot as plot
+
+df = pd.read_csv(link)
+df
+
+# Contagem da ocorrência de regiões
+
+region_count = df['WHO region'].value_counts()
+
+# Contagem da ocorrência de países
+
+country_count = df['Country'].value_counts()
+
+# Soma da coluna de valores por bebida
+
+value_sum_by_beverage = df.groupby('Beverage Types')['Display Value'].sum()
+
+print("Contagem da ocorrência de regiões:")
+print(region_count)
+print()
+
+print("Contagem da ocorrência de países:")
+print(country_count)
+print()
+
+print("Soma da coluna de valores por bebida:")
+print(value_sum_by_beverage)
+
+
+''' letra d '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame(link)
+
+# Converter a coluna "Display Value" para tipo numérico
+df['Display Value'] = df['Display Value'].str.replace(',', '.').astype(float)
+
+# Análises estatísticas da coluna "Display Value" agrupadas por tipo de bebida
+statistics = df.groupby('Beverage Types')['Display Value'].agg(['mean', 'mode', 'median', 'describe'])
+
+# Gráfico de comparação dos valores agrupados por tipo de bebida
+df.groupby('Beverage Types')['Display Value'].mean().plot.bar()
+plt.xlabel('Beverage Types')
+plt.ylabel('Mean Display Value')
+plt.title('Comparison of Display Value by Beverage Types')
+plt.show()
+
+# Exibir as estatísticas
+print(statistics)
+
+
+''' letra e '''
+
+''' i '''
+import pandas as pd
+import requests
+import matplotlib.pyplot as plot
+
+df = pd.read_csv(link)
+df
+
+# Filtrar os dados do ano de 1985
+
+filtered_df = df.loc[df['Year'] == 1985]
+
+# Mostrar a coluna de bebidas do ano de 1985
+
+beverage_column = filtered_df['Beverage Types']
+print(beverage_column)
+
+''' ii ''' 
+
+import pandas as pd
+import requests
+import matplotlib.pyplot as plot
+
+df = pd.read_csv(link)
+df
+
+# Filtrar os dados com valor de "Display Value" acima de 4
+
+filtered_df = df.loc[df['Display Value'] > 4]
+
+# Mostrar a coluna "WHO region" dos dados filtrados
+
+region_column = filtered_df['WHO region']
+print(region_column)
+
+
+'''QUESTAO 2'''
+
+codlink = "https://raw.githubusercontent.com/MARC070W2/NF3-BIG-DATA-MARCOS-PAULO-BORGES-MACEDO/main/cursos-prouni.csv"
+
+''' 2 - A ''' 
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+colunas_notas = [ 'nota_integral_ampla', 'nota_integral_cotas', 'nota_parcial_ampla', 'nota_parcial_cotas', ]
+
+df[colunas_notas] = df[colunas_notas].fillna(0.0)
+df
+
+
+''' 2 - B '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+
+df.groupby(["grau", "curso_busca"])["grau"].count()
+
+''' 2 - C '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+agrupamento_cursos = df[df['curso_busca'].isin(['Matemática', 'Medicina' , 'Pedagogia'])]
+print(agrupamento_cursos)
+
+''' 2 - D '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+ValueCentral = df.groupby('uf_busca')['nota_integral_ampla'].median()
+ValueCentral
+
+''' 2 - E '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+result = df.loc[df['grau'] == 'Tecnológico']
+result
+
+''' 2 - F '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+Delete = df.drop("cidade_filtro", axis=1)
+Delete
+
+''' 2 - G '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+med = df[df["nome"] == "Medicina"]
+
+div = Med["mensalidade"].mean()
+div
+
+''' 2 - I '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+Curso = df[df["grau"] == "Bacharelado"]
+
+estatistica = Curso["nota_integral_ampla"].describe()
+estatistica
+
+''' 2 - J '''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(codlink)
+df
+
+result = df.groupby('grau')['nota_integral_cotas'].mean()
+
+result.plot.bar(x='grau')
+
+plot.xlabel('Tipos de Curso')
+
+plot.ylabel('Media das cotas')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
